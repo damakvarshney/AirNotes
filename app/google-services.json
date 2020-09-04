@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "798337331984",
+    "firebase_url": "https://airnotes-b4503.firebaseio.com",
+    "project_id": "airnotes-b4503",
+    "storage_bucket": "airnotes-b4503.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:798337331984:android:6426ea0c2ac084e2006b95",
+        "android_client_info": {
+          "package_name": "com.application.airnotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "798337331984-gt5uap7q62n5e478omsf6d1dabhv4uqb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDuNTNo5ItXMJcpXPnFCrwQJcWFZqfLDm4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "798337331984-gt5uap7q62n5e478omsf6d1dabhv4uqb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

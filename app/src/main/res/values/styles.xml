@@ -1,0 +1,36 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/dull_pink</item>
+        <item name="colorPrimaryDark">@color/dull_pink</item>
+        <item name="colorAccent">@color/dodger_blue</item>
+    </style>
+
+
+    <!--    Full Screens-->
+    <style name="FullScreens" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/dull_pink</item>
+        <item name="colorPrimaryDark">@color/dull_green</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <style name="custom_progressDialog" parent="android:Theme.DeviceDefault.Dialog">
+        <item name="DialogTitleAppearance">@android:style/TextAppearance.Medium</item>
+        <item name="DialogTitleText">Please Wait</item>
+        <item name="android:textColor">@color/dodger_blue</item>
+        <item name="DialogSpotColor">@color/dodger_blue</item>
+        <item name="DialogSpotCount">8</item>
+        <item name="android:background">@drawable/round_green_button</item>
+    </style>
+
+    <style name="CustomProgressBar" parent="android:Widget.ProgressBar.Horizontal">
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:progressDrawable">@drawable/custom_progressbar</item>
+        <item name="android:minHeight">10dip</item>
+        <item name="android:maxHeight">20dip</item>
+    </style>
+
+
+</resources>

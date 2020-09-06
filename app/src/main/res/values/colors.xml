@@ -11,5 +11,6 @@
     <color name="white">#ffffff</color>
     <color name="blur_grey">#43707070</color>
     <color name="dodger_blue">#1e90ff</color>
+    <color name="danger">#FF1E1E</color>
 
 </resources>

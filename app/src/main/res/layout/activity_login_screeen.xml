@@ -11,8 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="20dp"
+        android:orientation="vertical">
 
         <ImageView
             android:id="@+id/back_arrow_login_screen"
@@ -25,71 +25,240 @@
             tools:ignore="RtlHardcoded,VectorDrawableCompat" />
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="60dp"
             android:fontFamily="@font/aclonica"
             android:text="@string/login"
             android:textColor="@color/silver_grey"
             android:textSize="40sp"
             android:textStyle="bold" />
 
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/round_layout_bg"
+        android:layout_margin="20dp"
+        android:padding="20dp">
+
+
+
+
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editTextTextEmailAddress"
+            <TextView
+                android:id="@+id/enter_mailId_textView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:fontFamily="casual"
-                android:hint="@string/email_address"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/black"
-                android:textColorHint="@color/silver_grey"
-                android:textSize="18sp" />
+                android:fontFamily="@font/aclonica"
+                android:text="Please enter Email Id  "
+                android:textColor="@color/silver_grey"
+                android:textSize="20sp"
+                android:paddingVertical="15dp"
+                android:visibility="gone"
+                android:textStyle="normal" />
 
-            <EditText
-                android:id="@+id/editTextTextPassword"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:autofillHints=""
-                android:ems="10"
-                android:fontFamily="casual"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:textColor="@color/black"
-                android:textColorHint="@color/silver_grey"
-                android:textSize="18sp" />
+                android:orientation="horizontal"
+                android:id="@+id/email_layout">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_baseline_email_24"
+                    android:contentDescription="TODO"
+                    tools:ignore="ContentDescription,HardcodedText" />
+
+                <EditText
+                    android:id="@+id/editTextTextEmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:fontFamily="casual"
+                    android:hint="@string/email_address"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/silver_grey"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/password_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginTop="15dp"
+                    android:src="@drawable/ic_baseline_vpn_key_24"/>
+
+                <EditText
+                    android:id="@+id/editTextTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:layout_marginTop="10dp"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:fontFamily="casual"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/silver_grey"
+                    android:visibility="visible"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:id="@+id/mobile_layout"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_baseline_phone_24"
+                    android:contentDescription="TODO"
+                    tools:ignore="ContentDescription,HardcodedText" />
+
+                <EditText
+                    android:id="@+id/editTextMobileLogin"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:fontFamily="casual"
+                    android:hint="Enter Mobile Number"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/silver_grey"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/verify_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/round_green_button"
+            android:fontFamily="casual"
+            android:onClick="verify_now"
+            android:text="@string/verify"
+            android:visibility="gone"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/login_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="15dp"
             android:background="@drawable/round_green_button"
             android:fontFamily="casual"
             android:onClick="login_now"
             android:text="@string/login"
+            android:visibility="visible"
             android:textSize="18sp"
             android:textStyle="bold" />
 
+        <Button
+            android:id="@+id/submit_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/round_green_button"
+            android:fontFamily="casual"
+            android:onClick="reset_password"
+            android:text="@string/submit"
+            android:visibility="gone"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/login_otp_textView"
+            android:text="@string/login_using_mobile_otp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:fontFamily="casual"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:onClick="login_using_otp"
+            android:visibility="visible"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/login_emailId"
+            android:text="@string/login_using_email_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:fontFamily="casual"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:onClick="login_using_email"
+            android:visibility="gone"
+            android:textSize="16sp" />
+
+
+
+
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/forgot_pass_textView"
+        android:text="@string/forgot_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:gravity="center_horizontal"
+        android:fontFamily="casual"
+        android:textColor="@color/danger"
+        android:onClick="get_password"
+        android:visibility="visible"
+        android:textSize="14sp" />
+
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="bottom"
         android:orientation="vertical">
+
+
 
         <TextView
             android:id="@+id/to_register_textView"

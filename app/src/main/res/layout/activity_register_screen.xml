@@ -11,9 +11,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="20dp">
-
+        android:padding="20dp"
+        android:orientation="vertical">
         <ImageView
             android:id="@+id/back_arrow_registerScreen"
             android:layout_width="30dp"
@@ -23,9 +22,7 @@
             android:onClick="to_welcome_screen"
             app:srcCompat="@drawable/ic_baseline_arrow_back_24"
             tools:ignore="RtlHardcoded,VectorDrawableCompat" />
-
         <TextView
-            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"
@@ -33,54 +30,148 @@
             android:text="@string/register"
             android:textColor="@color/silver_grey"
             android:textSize="40sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_margin="20dp"
+        android:background="@drawable/round_layout_bg"
+        android:padding="20dp">
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="80dp"
             android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/editTextName"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:ems="10"
-                android:fontFamily="casual"
-                android:hint="@string/name"
-                android:inputType="text"
-                android:textColor="@color/black"
-                android:textColorHint="@color/silver_grey"
-                android:textSize="18sp" />
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_baseline_person_24"/>
+
+                <EditText
+                    android:id="@+id/editTextName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:ems="10"
+                    android:fontFamily="casual"
+                    android:hint="@string/name"
+                    android:inputType="text"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/silver_grey"
+                    android:textSize="18sp" />
+
+            </LinearLayout>
 
 
-            <EditText
-                android:id="@+id/editTextTextEmailAddress"
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:ems="10"
-                android:fontFamily="casual"
-                android:hint="@string/email_address"
-                android:inputType="textEmailAddress"
-                android:textColor="@color/black"
-                android:textColorHint="@color/silver_grey"
-                android:textSize="18sp" />
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_baseline_email_24"/>
 
-            <EditText
-                android:id="@+id/editTextTextPassword"
+                <EditText
+                    android:id="@+id/editTextTextEmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:fontFamily="casual"
+                    android:hint="@string/email_address"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/silver_grey"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:ems="10"
-                android:fontFamily="casual"
-                android:hint="@string/password"
-                android:inputType="textPassword"
-                android:textColor="@color/black"
-                android:textColorHint="@color/silver_grey"
-                android:textSize="18sp" />
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_baseline_phone_24"/>
 
+                <EditText
+                    android:id="@+id/editTextMobileRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:fontFamily="casual"
+                    android:hint="@string/enter_mobile_number"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/silver_grey"
+                    android:textSize="18sp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="5dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/ic_baseline_vpn_key_24"/>
+
+                <EditText
+                    android:id="@+id/editTextTextPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints=""
+                    android:ems="10"
+                    android:fontFamily="casual"
+                    android:hint="@string/password"
+                    android:inputType="textPassword"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/silver_grey"
+                    android:textSize="18sp" />
+
+
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/meMobile"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="Mobile number"/>
+
+            <TextView
+                android:id="@+id/meUID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="UID"/>
         </LinearLayout>
 
         <Button

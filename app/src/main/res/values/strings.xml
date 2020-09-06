@@ -3,7 +3,7 @@
     <string name="login">Login</string>
     <string name="register">Register</string>
     <string name="todo">TODO</string>
-    <string name="password">Enter Password</string>
+    <string name="password">Enter New Password</string>
     <string name="email_address">Enter Email Address</string>
     <string name="don_t_have_an_account_register">Don\'t have an account ? Register</string>
     <string name="already_have_account_login">Already have account? Login</string>
@@ -12,7 +12,12 @@
     <string name="ok">OK</string>
     <string name="submit">Submit</string>
     <string name="login_using_mobile_otp">Login using Mobile OTP</string>
+    <string name="signin_using_mobile_otp">SignIn using Mobile OTP</string>
     <string name="login_using_email_address">Login using Email Address</string>
     <string name="verify">Verify</string>
     <string name="enter_mobile_number">Enter 10 digit Mobile Number</string>
+    <string name="link_to_existing_account">Link to Existing Account</string>
+    <string name="link_now">Link Now</string>
+    <string name="please_enter_email_id">Please enter Email Id</string>
+    <string name="don_t_have_email_create_one">Don\'t have Email ? Create one</string>
 </resources>

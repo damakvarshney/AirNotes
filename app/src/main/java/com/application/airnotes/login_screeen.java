@@ -33,16 +33,13 @@ import dmax.dialog.SpotsDialog;
 
 public class login_screeen extends AppCompatActivity {
 
-    Button login_btn, submit_btn, verify_btn;
-    EditText email_id, password, mobile_no;
+    Button login_btn, submit_btn;
+    EditText email_id, password;
     FirebaseAuth firebaseAuth;
     DatabaseReference databaseReference;
     private SpotsDialog progressDialog;
-    TextView enter_mail_textView, forgot_pass_textView, login_by_otp, login_by_email;
-    LinearLayout password_linearLayout, email_linearLayout, mobile_linearLayout;
-    PhoneAuthProvider.OnVerificationStateChangedCallbacks verificationStateChangedCallbacks;
-    String user_mobile_no;
-
+    TextView enter_mail_textView, forgot_pass_textView;
+    LinearLayout password_linearLayout, email_linearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,31 +56,10 @@ public class login_screeen extends AppCompatActivity {
         password_linearLayout = findViewById(R.id.password_layout);
         submit_btn = findViewById(R.id.submit_btn);
         email_linearLayout = findViewById(R.id.email_layout);
-        mobile_linearLayout = findViewById(R.id.mobile_layout);
-        login_by_otp = findViewById(R.id.login_otp_textView);
-        login_by_email = findViewById(R.id.login_emailId);
-        verify_btn = findViewById(R.id.verify_btn);
-        mobile_no = findViewById(R.id.editTextMobileLogin);
 
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
         progressDialog = new SpotsDialog(this, R.style.custom_progressDialog);
-
-        //Callback for Mobile Verification
-        verificationStateChangedCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
-
-            @Override
-            public void onVerificationCompleted(@NonNull PhoneAuthCredential phoneAuthCredential) {
-                login_with_mobile(phoneAuthCredential);
-            }
-
-            @Override
-            public void onVerificationFailed(@NonNull FirebaseException e) {
-                onPostExecute();
-                Toast.makeText(login_screeen.this, "" + e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-            }
-        };
-
     }
 
     //Login onClick : Email verification
@@ -117,14 +93,23 @@ public class login_screeen extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         onPostExecute();
                         Toast.makeText(login_screeen.this, "Check your emails to Reset Your Password", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(login_screeen.this,login_screeen.class);
+                        startActivity(intent);
+                        finish();
                     } else if (task.isCanceled()) {
                         onPostExecute();
                         Toast.makeText(login_screeen.this, Objects.requireNonNull(task.getException()).getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         Log.e("Cancelled", Objects.requireNonNull(task.getException().getLocalizedMessage()));
+                        Intent intent = new Intent(login_screeen.this,login_screeen.class);
+                        startActivity(intent);
+                        finish();
                     } else {
                         onPostExecute();
                         Toast.makeText(login_screeen.this, "This Email Id isn't present in the Database", Toast.LENGTH_SHORT).show();
                         Log.e("Error", Objects.requireNonNull(Objects.requireNonNull(task.getException()).getLocalizedMessage()));
+                        Intent intent = new Intent(login_screeen.this,login_screeen.class);
+                        startActivity(intent);
+                        finish();
                     }
                 }
             });
@@ -133,20 +118,7 @@ public class login_screeen extends AppCompatActivity {
         }
     }
 
-    //Verify onClick : Mobile verification
-    public void verify_now(View view) {
-        user_mobile_no = "+91" + mobile_no.getText().toString();
-
-
-
-        if (!mobile_no.getText().toString().equals("")) {
-            verify_mobile_number(user_mobile_no);
-        } else {
-            Toast.makeText(this, "Please enter valid Mobile No.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    //login using email and password
+   //login using email and password
     private void loginUser(String userMailId, String userPassword) {
         onPreExecute();
         firebaseAuth.signInWithEmailAndPassword(userMailId, userPassword).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
@@ -167,76 +139,15 @@ public class login_screeen extends AppCompatActivity {
         });
     }
 
-    //login using mobile
-    private void login_with_mobile(PhoneAuthCredential phoneAuthCredential) {
-        firebaseAuth.signInWithCredential(phoneAuthCredential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if(task.isSuccessful()){
-                    onPostExecute();
-                    Toast.makeText(login_screeen.this, "Mobile number verified successfully", Toast.LENGTH_SHORT).show();
-
-                    FirebaseUser currentUser = task.getResult().getUser();
-                    String uid = currentUser.getUid();
-                    Intent intentWithData = new Intent(login_screeen.this, register_screen.class);
-                    intentWithData.putExtra("MOBILE_NUMBER",user_mobile_no);
-                    intentWithData.putExtra("UID",uid);
-                    startActivity(intentWithData);
-                    finish();
-
-                }else {
-                    onPostExecute();
-                    Toast.makeText(login_screeen.this, "Mobile number verification failed", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-    }
-
-    //Verify mobile no. method
-    private void verify_mobile_number(String user_mobile_no) {
-        onPreExecute();
-        PhoneAuthProvider.getInstance().verifyPhoneNumber(user_mobile_no, 60, TimeUnit.SECONDS, this, verificationStateChangedCallbacks);
-    }
-
-    //Back to email login layout from mobile login
-    public void login_using_email(View view) {
-        Intent intent = new Intent(login_screeen.this, login_screeen.class);
-        startActivity(intent);
-        finish();
-    }
-
-    //Changing layout for login through mobile
-    public void login_using_otp(View view) {
-
-        mobile_linearLayout.setVisibility(View.VISIBLE);
-        login_by_email.setVisibility(View.VISIBLE);
-        verify_btn.setVisibility(View.VISIBLE);
-
-        login_btn.setVisibility(View.GONE);
-        email_linearLayout.setVisibility(View.GONE);
-        password_linearLayout.setVisibility(View.GONE);
-        forgot_pass_textView.setVisibility(View.GONE);
-        submit_btn.setVisibility(View.GONE);
-        login_by_otp.setVisibility(View.GONE);
-        forgot_pass_textView.setVisibility(View.GONE);
-
-
-    }
-
-    //Changing layout for forget password
+    //Changing layout for forget password textView
     public void get_password(View view) {
         enter_mail_textView.setVisibility(View.VISIBLE);
         forgot_pass_textView.setVisibility(View.VISIBLE);
         submit_btn.setVisibility(View.VISIBLE);
 
         password_linearLayout.setVisibility(View.GONE);
-        mobile_linearLayout.setVisibility(View.GONE);
         forgot_pass_textView.setVisibility(View.GONE);
         login_btn.setVisibility(View.GONE);
-        login_by_otp.setVisibility(View.GONE);
-        login_by_email.setVisibility(View.GONE);
-        verify_btn.setVisibility(View.GONE);
-
     }
 
     //BackArrow button

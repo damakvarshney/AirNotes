@@ -47,7 +47,20 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/enter_mailId_textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/aclonica"
+                android:text="@string/enter_mobile_number"
+                android:textColor="@color/silver_grey"
+                android:textSize="20sp"
+                android:visibility="gone"
+                android:paddingVertical="15dp"
+                android:textStyle="normal" />
+
             <LinearLayout
+                android:id="@+id/name_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -76,6 +89,7 @@
 
 
             <LinearLayout
+                android:id="@+id/email_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -104,8 +118,10 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/mobile_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:visibility="gone"
                 android:orientation="horizontal">
                 <ImageView
                     android:layout_width="wrap_content"
@@ -132,6 +148,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/password_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -158,33 +175,46 @@
 
 
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/meMobile"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Mobile number"/>
-
-            <TextView
-                android:id="@+id/meUID"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="UID"/>
         </LinearLayout>
+
+        <Button
+            android:id="@+id/verify_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/round_pink_button"
+            android:fontFamily="casual"
+            android:onClick="verify_now"
+            android:text="@string/verify"
+            android:visibility="gone"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/register_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/round_pink_button"
             android:fontFamily="casual"
             android:text="@string/register"
             android:onClick="register_now"
             android:textSize="18sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/signin_otp_textView"
+            android:text="@string/signin_using_mobile_otp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:ems="10"
+            android:fontFamily="casual"
+            android:gravity="center_horizontal"
+            android:textColor="@color/black"
+            android:onClick="sign_in_using_otp"
+            android:visibility="visible"
+            android:textSize="16sp" />
 
     </LinearLayout>
 

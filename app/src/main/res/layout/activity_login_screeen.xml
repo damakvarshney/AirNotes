@@ -60,7 +60,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aclonica"
-                android:text="Please enter Email Id  "
+                android:text="@string/please_enter_email_id"
                 android:textColor="@color/silver_grey"
                 android:textSize="20sp"
                 android:paddingVertical="15dp"
@@ -129,53 +129,10 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="gone"
-                android:id="@+id/mobile_layout"
-                android:orientation="horizontal">
 
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="5dp"
-                    android:layout_marginTop="5dp"
-                    android:src="@drawable/ic_baseline_phone_24"
-                    android:contentDescription="TODO"
-                    tools:ignore="ContentDescription,HardcodedText" />
-
-                <EditText
-                    android:id="@+id/editTextMobileLogin"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
-                    android:autofillHints=""
-                    android:ems="10"
-                    android:fontFamily="casual"
-                    android:hint="Enter Mobile Number"
-                    android:inputType="textEmailAddress"
-                    android:textColor="@color/black"
-                    android:textColorHint="@color/silver_grey"
-                    android:textSize="18sp" />
-
-
-            </LinearLayout>
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/verify_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:background="@drawable/round_green_button"
-            android:fontFamily="casual"
-            android:onClick="verify_now"
-            android:text="@string/verify"
-            android:visibility="gone"
-            android:textSize="18sp"
-            android:textStyle="bold" />
 
         <Button
             android:id="@+id/login_btn"
@@ -201,36 +158,6 @@
             android:visibility="gone"
             android:textSize="18sp"
             android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/login_otp_textView"
-            android:text="@string/login_using_mobile_otp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:ems="10"
-            android:fontFamily="casual"
-            android:gravity="center_horizontal"
-            android:textColor="@color/black"
-            android:onClick="login_using_otp"
-            android:visibility="visible"
-            android:textSize="16sp" />
-
-        <TextView
-            android:id="@+id/login_emailId"
-            android:text="@string/login_using_email_address"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:ems="10"
-            android:fontFamily="casual"
-            android:gravity="center_horizontal"
-            android:textColor="@color/black"
-            android:onClick="login_using_email"
-            android:visibility="gone"
-            android:textSize="16sp" />
-
-
 
 
     </LinearLayout>

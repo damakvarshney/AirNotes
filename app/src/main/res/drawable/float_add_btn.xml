@@ -1,0 +1,11 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item>
+        <shape android:shape="rectangle">
+            <corners android:radius="25dp"/>
+            <solid android:color="@color/dull_pink"/>
+        </shape>
+    </item>
+    <item android:drawable="@drawable/ic_baseline_add_24"/>
+
+</layer-list>

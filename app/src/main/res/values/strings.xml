@@ -20,4 +20,17 @@
     <string name="link_now">Link Now</string>
     <string name="please_enter_email_id">Please enter Email Id</string>
     <string name="don_t_have_email_create_one">Don\'t have Email ? Create one</string>
+    <string name="title_activity_main_screen">main_screen</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="start_creating_notes_with_airnotes">Start creating notes with AirNotes</string>
+    <string name="save_now">Save Now</string>
+    <string name="enter_title">Enter Title</string>
+    <string name="enter_description">Enter Description</string>
 </resources>

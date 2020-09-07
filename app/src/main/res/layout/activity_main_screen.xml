@@ -1,15 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    tools:context=".main_screen">
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_addNotes"
         android:layout_width="match_parent"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/white"
+        app:navigationIcon="@drawable/ic_baseline_navigation_24"
         android:layout_height="wrap_content"
-        android:text="@string/submit"/>
+        android:background="@color/dull_pink"/>
+
+
+   <FrameLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       tools:ignore="UselessParent">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:fontFamily="casual"
+            android:textStyle="bold"
+            android:text="@string/start_creating_notes_with_airnotes"/>
+
+       <com.robertlevonyan.views.customfloatingactionbutton.FloatingActionButton
+           android:id="@+id/fab"
+           android:layout_width="50dp"
+           android:layout_height="50dp"
+           android:layout_margin="20dp"
+           android:onClick="to_add_notes"
+           app:fabType="circle"
+           app:fabColor="@color/dull_pink"
+           android:background="@drawable/float_add_btn"
+           android:layout_gravity="bottom|end" />
+
+   </FrameLayout>
 
 </LinearLayout>

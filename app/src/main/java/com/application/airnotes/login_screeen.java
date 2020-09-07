@@ -1,6 +1,7 @@
 package com.application.airnotes;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
@@ -40,6 +41,8 @@ public class login_screeen extends AppCompatActivity {
     private SpotsDialog progressDialog;
     TextView enter_mail_textView, forgot_pass_textView;
     LinearLayout password_linearLayout, email_linearLayout;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,8 @@ public class login_screeen extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
         progressDialog = new SpotsDialog(this, R.style.custom_progressDialog);
+        sharedPreferences = getSharedPreferences("AIRNOTES_DATA", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
     }
 
     //Login onClick : Email verification
@@ -126,12 +131,16 @@ public class login_screeen extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    editor.putBoolean("LOGIN_STATUS",true);
+                    editor.commit();
                     onPostExecute();
                     Toast.makeText(login_screeen.this, "Logged In Successfully. ", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(login_screeen.this, main_screen.class);
                     startActivity(intent);
                     finish();
                 } else {
+                    editor.putBoolean("LOGIN_STATUS",false);
+                    editor.commit();
                     onPostExecute();
                     Toast.makeText(login_screeen.this, Objects.requireNonNull(task.getException()).getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                 }

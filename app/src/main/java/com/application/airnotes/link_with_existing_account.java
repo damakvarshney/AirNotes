@@ -6,7 +6,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,13 +25,13 @@ import com.google.firebase.database.FirebaseDatabase;
 import dmax.dialog.SpotsDialog;
 
 public class link_with_existing_account extends AppCompatActivity {
-    FirebaseAuth firebaseAuth;
     EditText email, password,name;
     AuthCredential credential;
-    DatabaseReference databaseReference;
     private SpotsDialog progressDialog;
     String userPhoneNumber, userEmail, userPassword,username;
     Button link_btn;
+    public static DatabaseReference databaseReference;
+    public static FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,7 +141,6 @@ public class link_with_existing_account extends AppCompatActivity {
                         onPreExecute();
                         if (task.isSuccessful()) {
                             Log.d("newSuccess", "linkWithCredential:success");
-                            FirebaseUser user = task.getResult().getUser();
                             updateUI();
                         } else {
                             Log.w("newFailure", "linkWithCredential:failure", task.getException());

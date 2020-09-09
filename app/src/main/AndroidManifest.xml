@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".addNote_screen"></activity>
+        <activity android:name=".addNote_screen"
+            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
         <activity
             android:name=".main_screen"
             android:label="@string/title_activity_main_screen"

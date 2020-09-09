@@ -27,6 +27,7 @@ android {
     dataBinding {
         enabled = true
     }
+
 }
 // Android Studio 4.0
 
@@ -45,4 +46,8 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation 'com.robertlevonyan.view:CustomFloatingActionButton:2.1.0'
+    implementation  'com.android.support:design:23.0.1'
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+
+
 }

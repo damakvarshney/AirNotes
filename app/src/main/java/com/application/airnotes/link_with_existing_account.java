@@ -1,6 +1,7 @@
 package com.application.airnotes;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,8 +31,10 @@ public class link_with_existing_account extends AppCompatActivity {
     private SpotsDialog progressDialog;
     String userPhoneNumber, userEmail, userPassword,username;
     Button link_btn;
-    public static DatabaseReference databaseReference;
-    public static FirebaseAuth firebaseAuth;
+    DatabaseReference database_user;
+    FirebaseAuth firebaseAuth;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +51,9 @@ public class link_with_existing_account extends AppCompatActivity {
 
         progressDialog = new SpotsDialog(this, R.style.custom_progressDialog);
         firebaseAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        database_user = FirebaseDatabase.getInstance().getReference("users");
+        sharedPreferences = getSharedPreferences("AIRNOTES_DATA", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
     }
 
@@ -63,7 +68,8 @@ public class link_with_existing_account extends AppCompatActivity {
 
                         //using data class storing user to database
                         if (task.isSuccessful()) {
-
+                            editor.putString("user_id_from_phone",uid);
+                            editor.commit();
                             save_user_to_database(uid);
                         } else {
                             Toast.makeText(link_with_existing_account.this, "Failed to Create User", Toast.LENGTH_SHORT).show();
@@ -86,7 +92,7 @@ public class link_with_existing_account extends AppCompatActivity {
     //store on database
     private void save_user_to_database(String uid) {
         UserInfo userInfo = new UserInfo(username,userEmail,userPhoneNumber);
-        databaseReference.child(uid).setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+        database_user.child(uid).setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if(task.isSuccessful()){

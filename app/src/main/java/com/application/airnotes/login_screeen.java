@@ -37,7 +37,7 @@ public class login_screeen extends AppCompatActivity {
     Button login_btn, submit_btn;
     EditText email_id, password;
     FirebaseAuth firebaseAuth;
-    DatabaseReference databaseReference;
+    DatabaseReference database_user;
     private SpotsDialog progressDialog;
     TextView enter_mail_textView, forgot_pass_textView;
     LinearLayout password_linearLayout, email_linearLayout;
@@ -61,7 +61,7 @@ public class login_screeen extends AppCompatActivity {
         email_linearLayout = findViewById(R.id.email_layout);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        database_user = FirebaseDatabase.getInstance().getReference("users");
         progressDialog = new SpotsDialog(this, R.style.custom_progressDialog);
         sharedPreferences = getSharedPreferences("AIRNOTES_DATA", MODE_PRIVATE);
         editor = sharedPreferences.edit();

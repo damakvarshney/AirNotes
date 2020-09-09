@@ -1,6 +1,7 @@
 package com.application.airnotes;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,6 +23,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -34,12 +36,14 @@ public class register_screen extends AppCompatActivity {
     Button register_btn, verify_btn;
     EditText name, email_id, password, mobile_no;
     FirebaseAuth firebaseAuth;
-    DatabaseReference databaseReference;
+    DatabaseReference database_user;
     private SpotsDialog progressDialog;
     String  user_mobile_no;
     TextView enter_mobile_txtView, signIn_Mobile_text;
     LinearLayout mobile_layout, email_layout, name_layout, password_layout;
     PhoneAuthProvider.OnVerificationStateChangedCallbacks verificationStateChangedCallbacks;
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +65,10 @@ public class register_screen extends AppCompatActivity {
         verify_btn = findViewById(R.id.verify_btn);
 
         firebaseAuth = FirebaseAuth.getInstance();
-        databaseReference = FirebaseDatabase.getInstance().getReference("users");
+        database_user = FirebaseDatabase.getInstance().getReference("users");
         progressDialog = new SpotsDialog(this, R.style.custom_progressDialog);
+        sharedPreferences = getSharedPreferences("AIRNOTES_DATA", MODE_PRIVATE);
+        editor = sharedPreferences.edit();
 
         //Callback for Mobile Verification
         verificationStateChangedCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
@@ -135,10 +141,11 @@ public class register_screen extends AppCompatActivity {
                     //using data class storing user to database
                     UserInfo userInfo = new UserInfo(username, userMailId, userPhoneNumber);
 
-                    databaseReference.child(uid).setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
+                    database_user.child(uid).setValue(userInfo).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
+                                editor.putString("user_id_from_email",uid);
                                 onPostExecute();
                                 Toast.makeText(register_screen.this, "User is Registered Successfully", Toast.LENGTH_SHORT).show();
                             } else {

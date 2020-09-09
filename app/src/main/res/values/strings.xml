@@ -34,4 +34,6 @@
     <string name="enter_title">Enter Title</string>
     <string name="enter_description">Enter Description</string>
     <string name="day_mode">Day Mode</string>
+    <string name="light_mode">"\U+1F31E"</string>
+    <string name="dark_mode">"\U+1F31C"</string>
 </resources>

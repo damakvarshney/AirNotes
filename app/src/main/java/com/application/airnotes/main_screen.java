@@ -16,13 +16,18 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.rockerhieu.emojicon.EmojiconEditText;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.emoji.text.EmojiCompat;
+import androidx.emoji.text.FontRequestEmojiCompatConfig;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.provider.FontRequest;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -37,11 +42,12 @@ public class main_screen extends AppCompatActivity {
     Toolbar toolbar;
     ArrayList<UserNotes> all_notes = new ArrayList<>();
     RecyclerView recyclerView;
-    TextView start_textView;
+    TextView start_textView,light_mode,dark_mode;
     ImageView floating_button;
     DatabaseReference databaseReference,database_note;
     FirebaseUser current_user;
     private SpotsDialog progressDialog;
+    String received_title,received_desc;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +57,14 @@ public class main_screen extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         toolbar = findViewById(R.id.toolbar_addNotes);
         floating_button = findViewById(R.id.fab);
+
         progressDialog = new SpotsDialog(this, R.style.custom_progressDialog);
+
+
+
+        Intent intent = getIntent();
+        received_title=intent.getStringExtra("TITLE");
+        received_desc = intent.getStringExtra("DESCRIPTION");
 
         current_user = FirebaseAuth.getInstance().getCurrentUser();
         String uid = current_user.getUid();
@@ -61,9 +74,13 @@ public class main_screen extends AppCompatActivity {
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
+        onPreExecute();
+        read_from_database();
+        Log.e("check_now", database_note.getKey());
 
-            onPreExecute();
-            read_from_database();
+
+
+
 
 
     }
@@ -86,6 +103,10 @@ public class main_screen extends AppCompatActivity {
                     UserNotes userNotes = snapshot.getValue(UserNotes.class);
                     all_notes.add(userNotes);
                 }
+                if(dataSnapshot.getValue()!=null){
+                    recyclerView.setVisibility(View.VISIBLE);
+                    start_textView.setVisibility(View.GONE);
+                }
                 onPostExecute();
                 main_screen_adapter adapter = new main_screen_adapter(main_screen.this,all_notes);
                 recyclerView.setAdapter(adapter);
@@ -97,6 +118,8 @@ public class main_screen extends AppCompatActivity {
             }
         });
     }
+
+
     //Am using it in an AsyncTask. So in  my onPreExecute, I do this:
     public void onPreExecute() {
         progressDialog.show();
@@ -106,4 +129,6 @@ public class main_screen extends AppCompatActivity {
     public void onPostExecute() {
         progressDialog.dismiss();
     }
+
+
 }

@@ -72,7 +72,7 @@ public class addNote_screen extends AppCompatActivity {
         String context_title = title.getText().toString();
         String context_desc = description.getText().toString();
 
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd MM yyyy");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         Calendar calendar = Calendar.getInstance();
         String todays_date = simpleDateFormat.format(calendar.getTime());
 
@@ -132,7 +132,7 @@ public class addNote_screen extends AppCompatActivity {
 
         String context_title = title.getText().toString();
         String context_desc = description.getText().toString();
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("DD MM YYYY");
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         Calendar calendar = Calendar.getInstance();
         String todays_date = simpleDateFormat.format(calendar.getTime());
 
@@ -153,4 +153,6 @@ public class addNote_screen extends AppCompatActivity {
     public void onPostExecute() {
         progressDialog.dismiss();
     }
+
+
 }

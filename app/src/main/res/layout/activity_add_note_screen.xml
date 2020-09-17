@@ -68,25 +68,21 @@
                 android:layout_marginBottom="10dp"
                 android:fontFamily="casual"
                 android:hint="@string/enter_description"
-                android:inputType="text"
+                android:imeOptions="actionDone"
+
+
+
+                android:ems="10"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLength="2000"
+                android:maxLines="4"
+                android:paddingBottom="10dp"
+                android:singleLine="false"
                 android:textColor="@color/black"
                 android:textColorHint="@color/silver_grey"
                 android:textSize="18sp" />
 
         </LinearLayout>
-
-        <Button
-            android:id="@+id/register_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:background="@drawable/round_pink_button"
-            android:fontFamily="casual"
-            android:text="@string/save_now"
-            android:textColor="@color/white"
-            android:onClick="click_for_save"
-            android:textSize="18sp"
-            android:textStyle="bold" />
     </LinearLayout>
 
 

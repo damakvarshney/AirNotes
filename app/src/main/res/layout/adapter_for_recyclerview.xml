@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:id="@+id/root"
     android:orientation="vertical">
 
     <androidx.cardview.widget.CardView
@@ -9,16 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="10dp"
+        android:layout_marginLeft="10dp"
         android:background="@drawable/round_layout_bg"
-        android:elevation="10dp"
-        android:padding="10dp">
+        android:elevation="10dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="10dp">
+            android:padding="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -34,8 +35,8 @@
                     android:padding="5dp"
                     android:text="Firebase title"
                     android:textColor="#BA000000"
-                    android:textSize="20dp"
-                    android:textStyle="bold" />
+                    android:textSize="18dp"
+                    android:textFontWeight="400" />
 
                 <TextView
                     android:id="@+id/desc_received"
@@ -47,13 +48,15 @@
                     android:padding="5dp"
                     android:text="Firebase title"
                     android:textColor="#757272"
-                    android:textSize="20dp"
+                    android:textSize="16dp"
                     android:textStyle="normal" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingHorizontal="5dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -61,28 +64,15 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="8"
+                    android:layout_gravity="center_vertical"
                     android:gravity="start"
-                    android:padding="5dp"
                     android:text="Firebase title"
                     android:textColor="#757272"
-                    android:textSize="20dp"
-                    android:textStyle="normal" />
+                    android:textAlignment="viewEnd"
+                    android:textSize="12dp"
+                    android:textStyle="normal"
+                    tools:ignore="RtlCompat" />
 
-                <ImageView
-                    android:id="@+id/edit_image"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_baseline_edit_24" />
-
-                <ImageView
-                    android:id="@+id/delete_image"
-                    android:layout_width="0dp"
-                    android:layout_height="40dp"
-                    android:layout_weight="1"
-                    android:padding="5dp"
-                    android:src="@drawable/ic_baseline_delete_24" />
 
             </LinearLayout>
         </LinearLayout>

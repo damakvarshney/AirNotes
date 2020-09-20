@@ -99,6 +99,7 @@ public class login_screeen extends AppCompatActivity {
                         onPostExecute();
                         Toast.makeText(login_screeen.this, "Check your emails to Reset Your Password", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(login_screeen.this,login_screeen.class);
+                        overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
                         startActivity(intent);
                         finish();
                     } else if (task.isCanceled()) {
@@ -106,6 +107,7 @@ public class login_screeen extends AppCompatActivity {
                         Toast.makeText(login_screeen.this, Objects.requireNonNull(task.getException()).getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         Log.e("Cancelled", Objects.requireNonNull(task.getException().getLocalizedMessage()));
                         Intent intent = new Intent(login_screeen.this,login_screeen.class);
+                        overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
                         startActivity(intent);
                         finish();
                     } else {
@@ -113,6 +115,7 @@ public class login_screeen extends AppCompatActivity {
                         Toast.makeText(login_screeen.this, "This Email Id isn't present in the Database", Toast.LENGTH_SHORT).show();
                         Log.e("Error", Objects.requireNonNull(Objects.requireNonNull(task.getException()).getLocalizedMessage()));
                         Intent intent = new Intent(login_screeen.this,login_screeen.class);
+                        overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
                         startActivity(intent);
                         finish();
                     }
@@ -136,6 +139,7 @@ public class login_screeen extends AppCompatActivity {
                     onPostExecute();
                     Toast.makeText(login_screeen.this, "Logged In Successfully. ", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(login_screeen.this, main_screen.class);
+                    overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
                     startActivity(intent);
                     finish();
                 } else {
@@ -162,12 +166,14 @@ public class login_screeen extends AppCompatActivity {
     //BackArrow button
     public void to_welcome_screen(View view) {
         Intent intent = new Intent(this, welcome_screen.class);
+        overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
         startActivity(intent);
     }
 
     //Don't have account
     public void to_register_screen(View view) {
         Intent intent = new Intent(this, register_screen.class);
+        overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
         startActivity(intent);
     }
 

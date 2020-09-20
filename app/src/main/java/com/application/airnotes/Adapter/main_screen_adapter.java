@@ -81,7 +81,6 @@ public class main_screen_adapter extends RecyclerView.Adapter<main_screen_adapte
             }
         });
 
-
         holder.root.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {

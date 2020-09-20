@@ -198,6 +198,7 @@ public class register_screen extends AppCompatActivity {
     //Goto login screen through textView{Already a user}
     public void to_login_screen(View view) {
         Intent intent = new Intent(this, login_screeen.class);
+        overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
         startActivity(intent);
     }
 
@@ -219,6 +220,7 @@ public class register_screen extends AppCompatActivity {
     //Go to welcome screen through imageView{backArrow}
     public void to_welcome_screen(View view) {
         Intent intent = new Intent(this, welcome_screen.class);
+        overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
         startActivity(intent);
     }
 

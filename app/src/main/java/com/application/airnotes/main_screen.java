@@ -40,18 +40,14 @@ import java.util.ArrayList;
 
 import dmax.dialog.SpotsDialog;
 
-public class main_screen extends AppCompatActivity implements SearchView.OnQueryTextListener {
+public class main_screen extends AppCompatActivity {
 
     Toolbar toolbar;
     RecyclerView recyclerView;
     TextView start_textView;
     ImageView floating_button;
     private SpotsDialog progressDialog;
-    SearchView searchView;
 
-    ArrayList<String> title_list;
-    ArrayAdapter<String > adapter;
-    ListView listView;
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
     String received_title, received_desc;
@@ -63,14 +59,14 @@ public class main_screen extends AppCompatActivity implements SearchView.OnQuery
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_screen);
 
-        searchView = findViewById(R.id.searchView);
+//        searchView = findViewById(R.id.searchView);
         start_textView = findViewById(R.id.start_creating_textView);
         recyclerView = findViewById(R.id.recyclerView);
         toolbar = findViewById(R.id.toolbar_addNotes);
         floating_button = findViewById(R.id.fab);
         toolbar.inflateMenu(R.menu.main_menu);
         setSupportActionBar(toolbar);
-        listView = (ListView) findViewById(R.id.lv1);
+//        listView = (ListView) findViewById(R.id.lv1);
 
         progressDialog = new SpotsDialog(this, R.style.custom_progressDialog);
         sharedPreferences = getSharedPreferences("AIRNOTES_DATA", MODE_PRIVATE);
@@ -89,42 +85,9 @@ public class main_screen extends AppCompatActivity implements SearchView.OnQuery
         LinearLayoutManager linearLManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLManager);
 
-        title_list = new ArrayList<>();
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,title_list);
-        listView.setAdapter(adapter);
 
-        searchView.setOnQueryTextListener(this);
 
-        //onClick ListItemView
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                
-            }
-        });
-
-        read_all_title();
         read_from_database();
-    }
-
-    //read all titles for searchView
-    private void read_all_title() {
-        database_note.getRef().addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Log.e("noteTitle",dataSnapshot.toString());
-                for(DataSnapshot snapshot : dataSnapshot.getChildren()){
-                    title_list.add(snapshot.child("noteTitle").getValue().toString());
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-
     }
 
     //Reading from the Database
@@ -135,9 +98,7 @@ public class main_screen extends AppCompatActivity implements SearchView.OnQuery
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-//                Log.e("DataSnapShot", String.valueOf(dataSnapshot));
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-//                    Log.e("tag", snapshot.toString());
 
                     UserNotes userNotes = snapshot.getValue(UserNotes.class);
                     all_notes.add(userNotes);
@@ -179,6 +140,7 @@ public class main_screen extends AppCompatActivity implements SearchView.OnQuery
     //Float button
     public void to_add_notes(View view) {
         Intent intent = new Intent(this, addNote_screen.class);
+        overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
         startActivity(intent);
     }
 
@@ -208,48 +170,22 @@ public class main_screen extends AppCompatActivity implements SearchView.OnQuery
                 editor.putBoolean("LOGIN_STATUS",false);
                 editor.commit();
                 Intent intent = new Intent(this,welcome_screen.class);
+                overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
                 startActivity(intent);
                 finish();
                 return true;
             case R.id.help:
                 Intent intent1 = new Intent(this,help_screen.class);
+                overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
                 startActivity(intent1);
                 return true;
             case R.id.about_app:
                 Intent intent2 = new Intent(this,abt_app_screen.class);
+                overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
                 startActivity(intent2);
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
-    }
-
-    @Override
-    public boolean onQueryTextSubmit(String query) {
-
-
-        listView.setVisibility(View.VISIBLE);
-        if(title_list.contains(query)){
-            adapter.getFilter().filter(query);
-        }else{
-            Toast.makeText(main_screen.this, "No Match found",Toast.LENGTH_LONG).show();
-        }
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String newText) {
-        listView.setVisibility(View.VISIBLE);
-        if(title_list.contains(newText)){
-            adapter.getFilter().filter(newText);
-        }else{
-            Toast.makeText(main_screen.this, "No Match found",Toast.LENGTH_LONG).show();
-        }
-        return false;
-    }
-
-    @Override
-    public void onPointerCaptureChanged(boolean hasCapture) {
-
     }
 }

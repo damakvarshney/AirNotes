@@ -24,27 +24,27 @@
        android:layout_marginTop="?actionBarSize"
        android:orientation="vertical">
 
-       <androidx.appcompat.widget.SearchView
-           android:id="@+id/searchView"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           app:defaultQueryHint="Search for Notes"
-           android:background="@drawable/round_white_bg"
-           android:layout_marginHorizontal="10dp"
-           android:layout_marginTop="10dp"
-           android:iconifiedByDefault="false"
-           android:layout_marginBottom="5dp"
-           android:elevation="10dp"
-           app:queryHint="Search for Notes "/>
+<!--       <androidx.appcompat.widget.SearchView-->
+<!--           android:id="@+id/searchView"-->
+<!--           android:layout_width="match_parent"-->
+<!--           android:layout_height="wrap_content"-->
+<!--           app:defaultQueryHint="Search for Notes"-->
+<!--           android:background="@drawable/round_white_bg"-->
+<!--           android:layout_marginHorizontal="10dp"-->
+<!--           android:layout_marginTop="10dp"-->
+<!--           android:iconifiedByDefault="false"-->
+<!--           android:layout_marginBottom="5dp"-->
+<!--           android:elevation="10dp"-->
+<!--           app:queryHint="Search for Notes "/>-->
 
-       <ListView
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:id="@+id/lv1"
-           android:divider="#707070"
-           android:dividerHeight="1dp"
-           android:visibility="gone"
-           android:layout_below="@+id/searchView"/>
+<!--       <ListView-->
+<!--           android:layout_width="match_parent"-->
+<!--           android:layout_height="match_parent"-->
+<!--           android:id="@+id/lv1"-->
+<!--           android:divider="#707070"-->
+<!--           android:dividerHeight="1dp"-->
+<!--           android:visibility="gone"-->
+<!--           android:layout_below="@+id/searchView"/>-->
 
 
        <androidx.recyclerview.widget.RecyclerView
@@ -54,6 +54,8 @@
            android:divider="@android:color/transparent"
            android:dividerHeight="8dp"
            android:visibility="gone"
+           android:layoutAnimation="@anim/layout_animation"
+           app:layout_behavior="@string/appbar_scrolling_view_behavior"
            android:layout_marginBottom="10dp"
            android:layout_marginRight="10dp"
            tools:listitem="@layout/adapter_for_recyclerview" />
@@ -79,6 +81,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/float_add_btn"
+        android:padding="5dp"
         android:layout_gravity="bottom|right"
         android:defaultFocusHighlightEnabled="true"
         android:elevation="20dp"

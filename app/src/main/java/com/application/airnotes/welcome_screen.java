@@ -18,11 +18,13 @@ public class welcome_screen extends AppCompatActivity {
 
     public void to_login_screen(View view) {
         Intent intent = new Intent(this,login_screeen.class);
+        overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
         startActivity(intent);
     }
 
     public void to_register_screen(View view) {
         Intent intent = new Intent(this,register_screen.class);
+        overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
         startActivity(intent);
     }
 }

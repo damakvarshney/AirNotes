@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -40,6 +41,7 @@ public class addNote_screen extends AppCompatActivity {
     String context_desc;
     String context_id;
     String timeStamp;
+    String uid;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,79 +54,27 @@ public class addNote_screen extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(addNote_screen.this, main_screen.class);
+                onBackPressed();
+                overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
                 startActivity(intent);
             }
         });
         title = findViewById(R.id.editTextTitle);
         description = findViewById(R.id.editTextDescription);
+
         databaseReference = FirebaseDatabase.getInstance().getReference("users");
         progressDialog = new SpotsDialog(this, R.style.custom_progressDialog);
 
-         sharedPreferences = getPreferences(MODE_PRIVATE);
+        sharedPreferences = getPreferences(MODE_PRIVATE);
         editor = sharedPreferences.edit();
 
+        //Getting data for editing
         Intent intent = getIntent();
         context_title=intent.getStringExtra("TITLE");
         context_desc=intent.getStringExtra("DESCRIPTION");
         context_id = intent.getStringExtra("NOTE_ID");
         title.setText(context_title);
         description.setText(context_desc);
-
-    }
-
-    //save NOTES
-    private void save_notes_to_database(String context_title, String context_desc, String todays_date) {
-        current_user = FirebaseAuth.getInstance().getCurrentUser();
-        String uid = current_user.getUid();
-
-
-        if(context_id.equals(null)){
-            Long tsLong = System.currentTimeMillis()/1000;
-            timeStamp = tsLong.toString();
-            UserNotes userNotes = new UserNotes(timeStamp,todays_date,context_title,context_desc);
-
-            databaseReference.child(uid).child("user_notes").child(timeStamp).setValue(userNotes).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
-
-                        Toast.makeText(addNote_screen.this, "Your Note is Saved", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(addNote_screen.this,main_screen.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                    else {
-
-                        Toast.makeText(addNote_screen.this, "Error in saving your Notes", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }else{
-            timeStamp = context_id;
-            UserNotes userNotes = new UserNotes(timeStamp,todays_date,context_title,context_desc);
-
-            databaseReference.child(uid).child("user_notes").child(timeStamp).setValue(userNotes).addOnCompleteListener(new OnCompleteListener<Void>() {
-                @Override
-                public void onComplete(@NonNull Task<Void> task) {
-                    if(task.isSuccessful()){
-
-                        Toast.makeText(addNote_screen.this, "Your Note is Saved", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(addNote_screen.this,main_screen.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                    else {
-
-                        Toast.makeText(addNote_screen.this, "Error in saving your Notes", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
-
-
-
-
-
 
 
     }
@@ -145,14 +95,70 @@ public class addNote_screen extends AppCompatActivity {
         context_desc = description.getText().toString();
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
         Calendar calendar = Calendar.getInstance();
-        String todays_date = simpleDateFormat.format(calendar.getTime());
+        String context_date = simpleDateFormat.format(calendar.getTime());
 
         if(!context_title.equalsIgnoreCase("") || !context_desc.equalsIgnoreCase("")){
-            save_notes_to_database(context_title,context_desc,todays_date);
+            if(context_id==null || context_id.isEmpty()){
+                save_notes_to_database(context_title,context_desc,context_date);
+            }else {
+                edited_note_to_database(context_title,context_desc,context_date);
+            }
         }else{
             return;
         }
 
+    }
+
+    //Save NOTES
+    private void save_notes_to_database(String context_title, String context_desc, String context_date) {
+        current_user = FirebaseAuth.getInstance().getCurrentUser();
+        uid = current_user.getUid();
+        Long tsLong = System.currentTimeMillis() / 1000;
+        timeStamp = tsLong.toString();
+        UserNotes userNotes = new UserNotes(timeStamp, context_date, context_title, context_desc);
+
+
+        databaseReference.child(uid).child("user_notes").child(timeStamp).setValue(userNotes).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+
+                    Toast.makeText(addNote_screen.this, "Your Note is Saved", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(addNote_screen.this, main_screen.class);
+                    overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
+                    startActivity(intent);
+                    finish();
+                } else {
+
+                    Toast.makeText(addNote_screen.this, "Error in saving your Notes", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+    }
+
+    //Edit Notes
+    private void edited_note_to_database(String context_title, String context_desc, String context_date) {
+        current_user = FirebaseAuth.getInstance().getCurrentUser();
+        uid = current_user.getUid();
+        UserNotes userNotes = new UserNotes(context_id,context_date,context_title,context_desc);
+
+        databaseReference.child(uid).child("user_notes").child(context_id).setValue(userNotes).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+
+                    Toast.makeText(addNote_screen.this, "Your Note is Saved", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(addNote_screen.this,main_screen.class);
+                    overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
+                    startActivity(intent);
+                    finish();
+                }
+                else {
+
+                    Toast.makeText(addNote_screen.this, "Error in saving your Notes", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     //Am using it in an AsyncTask. So in  my onPreExecute, I do this:

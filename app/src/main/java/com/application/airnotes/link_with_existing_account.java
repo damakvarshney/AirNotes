@@ -79,6 +79,7 @@ public class link_with_existing_account extends AppCompatActivity {
                                     onPostExecute();
                                     Log.e("Unsuccessful User", "Try again later", task.getException().getCause());
                                     Intent intent = new Intent(link_with_existing_account.this, welcome_screen.class);
+                                    overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
                                     startActivity(intent);
                                     finish();
                                 }
@@ -99,12 +100,14 @@ public class link_with_existing_account extends AppCompatActivity {
                     onPostExecute();
                     Toast.makeText(link_with_existing_account.this, "User is Registered Successfully", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(link_with_existing_account.this,main_screen.class);
+                    overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
                     startActivity(intent);
                     finish();
                 }else {
                     onPostExecute();
                     Log.e("Unsuccessful User", "Try again later", task.getException().getCause());
                     Intent intent = new Intent(link_with_existing_account.this, welcome_screen.class);
+                    overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
                     startActivity(intent);
                     finish();
                 }

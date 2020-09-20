@@ -11,9 +11,6 @@ public class splash_screen extends AppCompatActivity {
 
     private Handler hdlr = new Handler();
     SharedPreferences sharedPreferences;
-    /**
-     * Duration of wait
-     **/
     private final int SPLASH_DISPLAY_LENGTH = 1000;
 
 
@@ -31,9 +28,11 @@ public class splash_screen extends AppCompatActivity {
                 /* Create an Intent that will start the Menu-Activity. */
                 if (sharedPreferences.getBoolean("LOGIN_STATUS", false)) {
                     startActivity(new Intent(splash_screen.this, main_screen.class));
+                    overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
                     finish();
                 } else {
                     startActivity(new Intent(splash_screen.this, welcome_screen.class));
+                    overridePendingTransition(R.anim.right_to_left,R.anim.left_to_right);
                     finish();
                 }
             }

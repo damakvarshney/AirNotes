@@ -81,7 +81,6 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:src="@drawable/float_add_btn"
-        android:padding="5dp"
         android:layout_gravity="bottom|right"
         android:defaultFocusHighlightEnabled="true"
         android:elevation="20dp"

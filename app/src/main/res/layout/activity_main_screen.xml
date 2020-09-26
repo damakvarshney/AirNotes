@@ -24,29 +24,6 @@
        android:layout_marginTop="?actionBarSize"
        android:orientation="vertical">
 
-<!--       <androidx.appcompat.widget.SearchView-->
-<!--           android:id="@+id/searchView"-->
-<!--           android:layout_width="match_parent"-->
-<!--           android:layout_height="wrap_content"-->
-<!--           app:defaultQueryHint="Search for Notes"-->
-<!--           android:background="@drawable/round_white_bg"-->
-<!--           android:layout_marginHorizontal="10dp"-->
-<!--           android:layout_marginTop="10dp"-->
-<!--           android:iconifiedByDefault="false"-->
-<!--           android:layout_marginBottom="5dp"-->
-<!--           android:elevation="10dp"-->
-<!--           app:queryHint="Search for Notes "/>-->
-
-<!--       <ListView-->
-<!--           android:layout_width="match_parent"-->
-<!--           android:layout_height="match_parent"-->
-<!--           android:id="@+id/lv1"-->
-<!--           android:divider="#707070"-->
-<!--           android:dividerHeight="1dp"-->
-<!--           android:visibility="gone"-->
-<!--           android:layout_below="@+id/searchView"/>-->
-
-
        <androidx.recyclerview.widget.RecyclerView
            android:id="@+id/recyclerView"
            android:layout_width="match_parent"
